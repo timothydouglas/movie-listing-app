@@ -7,7 +7,7 @@ import { DetailsComponent } from './pages/details/details.component';
 @NgModule({
   imports: [
     CommonModule,
-    MoviesRoutingModule
+    MoviesRoutingModule,
   ],
   declarations: [
     ListingComponent,

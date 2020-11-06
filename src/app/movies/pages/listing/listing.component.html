@@ -2,3 +2,7 @@
   <button [routerLink]="['/']" routerLinkActive="router-link-active">Listing</button>
   <button [routerLink]="['/movies/details']" routerLinkActive="router-link-active">Details</button>
 </div>
+
+<div *ngFor="let movie of movies$ | async">
+  {{ movie }}
+</div>

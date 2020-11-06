@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MoviesService } from '../../services/movies.service';
+import { Observable } from 'rxjs';
+import { Movie } from '../../interfaces';
+import { Store } from '@ngrx/store';
 
 @Component( {
   selector: 'app-home',
@@ -7,12 +11,20 @@ import { Component, OnInit } from '@angular/core';
 } )
 export class ListingComponent implements OnInit {
 
-  title = 'The title';
+  movies$: Observable<Movie[]> = this.store.select(state => state.movies);
 
-  constructor() {
+  constructor( private store: Store<{ movies: Movie[] }>,
+               private movieService: MoviesService ) {
   }
 
   ngOnInit() {
+    // this.getMovies();
+    this.store.dispatch({ type: '[Movies Page] Load Movies' });
+  }
+
+  getMovies() {
+    // this.movies$ = this.movieService.getMovies();
+
   }
 
 }
