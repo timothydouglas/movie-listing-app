@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { MoviesService } from '../../services/movies.service';
 import { Observable } from 'rxjs';
 import { Movie } from '../../interfaces';
 import { Store } from '@ngrx/store';
+
+import * as fromActions from '../../store/movie.actions';
+import * as fromStore from '../../store/movie.reducer';
+import * as fromSelector from '../../store/movie.selectors';
 
 @Component( {
   selector: 'app-home',
@@ -11,20 +14,23 @@ import { Store } from '@ngrx/store';
 } )
 export class ListingComponent implements OnInit {
 
-  movies$: Observable<Movie[]> = this.store.select(state => state.movies);
+  isLoading$: Observable<boolean>;
+  error$: Observable<string | null>;
+  movies$: Observable<Movie[]>;
 
-  constructor( private store: Store<{ movies: Movie[] }>,
-               private movieService: MoviesService ) {
-  }
+
+  constructor( private store: Store<fromStore.MovieState>) {}
 
   ngOnInit() {
     // this.getMovies();
-    this.store.dispatch({ type: '[Movies Page] Load Movies' });
-  }
+    // this.movieService.getMovies()
+    // this.store.dispatch(GetMovies({ movies:  } );
+    this.store.dispatch(fromActions.requestLoadMovies());
+    this.movies$ = this.store.select(fromSelector.movies);
+    this.isLoading$ = this.store.select(fromSelector.isLoading);
+    this.error$ = this.store.select(fromSelector.error);
 
-  getMovies() {
-    // this.movies$ = this.movieService.getMovies();
-
+    console.log(this.movies$);
   }
 
 }

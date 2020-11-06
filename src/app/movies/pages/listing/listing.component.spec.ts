@@ -4,19 +4,19 @@ import { NO_ERRORS_SCHEMA } from '@angular/compiler/src/core';
 import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs';
 
-import { MoviesService } from '../../services/movies.service';
+import { MovieService } from '../../services/movie.service';
 
 describe( 'ListingComponent', () => {
   let component: ListingComponent;
   let fixture: ComponentFixture<ListingComponent>;
-  let service: MoviesService;
+  let service: MovieService;
 
   beforeEach( () => {
     TestBed.configureTestingModule( {
       providers: [
         { provide: HttpClient, useValue: null },
         {
-          provide: MoviesService,
+          provide: MovieService,
           useValue: {
             getMovies: () => {
             }
@@ -31,7 +31,7 @@ describe( 'ListingComponent', () => {
   beforeEach( () => {
     fixture = TestBed.createComponent( ListingComponent );
     component = fixture.componentInstance;
-    service = TestBed.inject( MoviesService );
+    service = TestBed.inject( MovieService );
     fixture.detectChanges();
   } );
 
@@ -60,7 +60,7 @@ describe( 'ListingComponent', () => {
       ];
 
       // @ts-ignore
-      spyOn( service, 'getMovies' ).and.returnValue( () => of( fakeAttendees ) );
+      spyOn( service, 'getMovies' ).and.returnValue( () => of( fakeMovies ) );
       component.ngOnInit();
       component.movies$.subscribe( movies => {
         expect( movies ).toEqual( fakeMovies );

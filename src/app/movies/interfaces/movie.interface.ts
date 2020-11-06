@@ -1,3 +1,7 @@
+export interface Movies {
+  results: Movie[];
+}
+
 export interface Movie {
   adult: string;
   backdrop_path: string;

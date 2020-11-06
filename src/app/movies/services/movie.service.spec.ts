@@ -1,23 +1,23 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { Movie } from '../interfaces';
-import { MoviesService } from './movies.service';
+import { MovieService } from './movie.service';
 
-describe( 'MoviesService', () => {
+describe( 'MovieService', () => {
   let httpTestingController: HttpTestingController;
-  let movieService: MoviesService;
+  let movieService: MovieService;
 
   beforeEach( () => {
     TestBed.configureTestingModule( {
       imports: [HttpClientTestingModule],
-      providers: [MoviesService]
+      providers: [MovieService]
     } );
 
-    movieService = TestBed.inject(MoviesService);
+    movieService = TestBed.inject(MovieService);
     httpTestingController = TestBed.inject(HttpTestingController);
   } );
 
-  it( 'should be created', inject( [MoviesService], ( service: MoviesService ) => {
+  it( 'should be created', inject( [MovieService], ( service: MovieService ) => {
     expect( service ).toBeTruthy();
   } ) );
 
