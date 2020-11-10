@@ -16,8 +16,7 @@ export class MovieEffects {
     private actions$: Actions,
     private movieService: MovieService,
     private store: Store<fromReducers.AppState>
-  ) {
-  }
+  ) {}
 
   page$ = this.store.pipe( select( fromSelectors.selectPage ) );
 
@@ -43,7 +42,7 @@ export class MovieEffects {
         })
       ),
       switchMap( movieId => this.movieService.getMovie( movieId.id ).pipe(
-        map( movie => fromActions.loadMovieSuccess( { movie: movie.movie } ) ),
+        map( movie => fromActions.loadMovieSuccess( movie ) ),
         catchError( error => of( fromActions.loadMovieFail( error ) )
         ) ) ),
       tap( console.log )

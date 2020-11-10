@@ -10,7 +10,7 @@
       <p class="item-title" *ngIf="movie.title">{{movie.title}}</p>
       <div class="item-heading">
         <div class="item-rating" *ngIf="movie.vote_average">
-          Rating: {{(movie$ | async )?.vote_average}} / 10
+          Rating: {{movie.vote_average}} / 10
         </div>
         <div class="item-genre" *ngIf="movie.genres">
           Genre:
