@@ -1,0 +1,73 @@
+.movie-list {
+  height: 100vh;
+  width: 100%;
+
+  &-wrapper {
+    background-color: var(--colourBrand);
+    display: flex;
+    flex-flow: row wrap;
+  }
+}
+
+.card-movie {
+  height: 100%;
+  width: 100%;
+}
+
+.card-avatar {
+  background-size: cover;
+}
+
+.mat-card-image {
+  margin: 0 auto 32px;
+}
+
+.list-item {
+  background-color: var(--colorBrand);
+  margin-bottom: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: (100% / 2);
+}
+
+.loading {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-size: calc(10px + 2vmin);
+  justify-content: center;
+  min-height: 100vh;
+  overflow: hidden;
+
+  > p {
+    display: none;
+  }
+}
+
+.spinner {
+  animation: rotation 1s infinite linear;
+  background: transparent;
+  border: var(--spinnerBorderWidth) solid var(--spinnerBorder);
+  border-left-color: var(--spinnerBorderAccent);
+  border-radius: 50%;
+  display: block;
+  height: var(--spinnerSize);
+  width: var(--spinnerSize);
+}
+
+.cdk-virtual-scroll-content-wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
+}

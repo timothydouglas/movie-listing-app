@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ListingComponent } from './pages/listing/listing.component';
+import { PopularComponent } from './pages/popular/popular.component';
 import { DetailsComponent } from './pages/details/details.component';
+import { MoviesGuard } from './guards/movies.guard';
 
 const routes: Routes = [
   {
     path: '',
-    component: ListingComponent
+    component: PopularComponent,
   },
   {
     path: 'details/:id',

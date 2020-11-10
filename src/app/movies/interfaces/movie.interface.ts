@@ -2,6 +2,14 @@ export interface Movies {
   results: Movie[];
 }
 
+export interface Page {
+  page: number;
+  results: Movie[];
+  total_results: number;
+  total_pages: number;
+}
+
+
 export interface Movie {
   adult: string;
   backdrop_path: string;

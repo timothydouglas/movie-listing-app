@@ -11,11 +11,11 @@ export class MeterComponent implements OnInit, OnDestroy {
 
   @Input() color: ThemePalette = 'primary';
   meter: boolean;
-
   private subscription: Subscription = new Subscription();
 
-  constructor( private meterService: MeterService ) {
-  }
+  constructor(
+    private meterService: MeterService
+  ) {}
 
   ngOnInit() {
     this.subscription = this.meterService.meter.subscribe( ( status: boolean ) => {

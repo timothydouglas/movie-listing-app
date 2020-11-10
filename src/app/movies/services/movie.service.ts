@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Movie } from '../interfaces';
+import { Movie, Page } from '../interfaces';
 import { environment } from '../../../environments/environment';
 import { map } from 'rxjs/operators';
 
@@ -10,10 +10,18 @@ import { map } from 'rxjs/operators';
 })
 export class MovieService {
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
-  getMovies(): Observable<Movie[]> {
-    return this.httpClient.get<Movie[]>(`${environment.apiEndpoint}movie/popular?api_key=${environment.apiKey}`).pipe(map(
-      resp => (<any>resp).results));
+  getPage(page = 0): Observable<Page> {
+    return this.http.get<Page>(`${environment.apiEndpoint}movie/popular?api_key=${environment.apiKey}&page=${page}`);
+  }
+
+  getMovies(page): Observable<Movie[]> {
+    return this.http.get<Movie[]>(`${environment.apiEndpoint}movie/popular?api_key=${environment.apiKey}&page=${page}`).pipe(
+      map( resp => (<any>resp).results));
+  }
+
+  getMovie(id: number): Observable<Movie> {
+    return this.http.get<Movie>(`${environment.apiEndpoint}movie/${id}`);
   }
 }

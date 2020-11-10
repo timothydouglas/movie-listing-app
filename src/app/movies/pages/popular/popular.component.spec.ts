@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ListingComponent } from './listing.component';
+import { PopularComponent } from './popular.component';
 import { NO_ERRORS_SCHEMA } from '@angular/compiler/src/core';
 import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs';
@@ -7,8 +7,8 @@ import { of } from 'rxjs';
 import { MovieService } from '../../services/movie.service';
 
 describe( 'ListingComponent', () => {
-  let component: ListingComponent;
-  let fixture: ComponentFixture<ListingComponent>;
+  let component: PopularComponent;
+  let fixture: ComponentFixture<PopularComponent>;
   let service: MovieService;
 
   beforeEach( () => {
@@ -23,13 +23,13 @@ describe( 'ListingComponent', () => {
           }
         }
       ],
-      declarations: [ListingComponent],
+      declarations: [PopularComponent],
       schemas: [NO_ERRORS_SCHEMA]
     } ).compileComponents();
   } );
 
   beforeEach( () => {
-    fixture = TestBed.createComponent( ListingComponent );
+    fixture = TestBed.createComponent( PopularComponent );
     component = fixture.componentInstance;
     service = TestBed.inject( MovieService );
     fixture.detectChanges();

@@ -1,0 +1,8 @@
+<app-listing
+  [movies]="movies$ | async"
+  [isLoading]="isLoading$ | async"
+  (loadMore)="loadNextPage()"
+  [loadMoreBuffer]="20">
+</app-listing>
+
+

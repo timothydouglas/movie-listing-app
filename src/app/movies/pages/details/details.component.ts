@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Movie } from '../../interfaces';
 
 @Component({
   selector: 'app-details',
