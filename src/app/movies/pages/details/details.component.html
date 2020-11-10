@@ -1,16 +1,16 @@
-<div class="block-movie" *ngIf="movie$ | async">
+<div class="block-movie" *ngIf="movie$ | async as movie">
   <div class="row">
     <div class="column img">
       <div class="movie-image">
-        <img *ngIf="movie$.poster_path | async" src="https://image.tmdb.org/t/p/w300/{{movie.poster_path}}">
-        <img *ngIf="!movie$.poster_path" src="http://makeupstudio.lu/html/images/poster/no_poster_available.jpg">
+        <img *ngIf="movie.poster_path" [alt]="movie.title" src="https://image.tmdb.org/t/p/w300/{{movie.poster_path}}">
+        <img *ngIf="!movie.poster_path" [alt]="movie.title" src="http://makeupstudio.lu/html/images/poster/no_poster_available.jpg">
       </div>
     </div>
     <div class="column overview">
-      <p class="item-title" *ngIf="movie$.title | async">{{movie.title}}</p>
+      <p class="item-title" *ngIf="movie.title">{{movie.title}}</p>
       <div class="item-heading">
         <div class="item-rating" *ngIf="movie.vote_average">
-          Rating: {{movie.vote_average}} / 10
+          Rating: {{(movie$ | async )?.vote_average}} / 10
         </div>
         <div class="item-genre" *ngIf="movie.genres">
           Genre:
@@ -19,14 +19,6 @@
       </div>
       <div class="item-description" *ngIf="movie.overview">
         <p><span class="block-title">Overview:</span> {{movie.overview}}</p>
-      </div>
-      <div class="item-cast" *ngIf="cast">
-        <span class="block-title">Cast:</span>
-        <span *ngFor="let actor of cast; let $last = last;">{{actor?.name}}{{$last ? '.' : ', '}} </span>
-      </div>
-      <div class="item-director" *ngIf="directors">
-        <span class="block-title">Directors:</span>
-        <span>{{director?.name}}</span>
       </div>
     </div>
   </div>

@@ -4,13 +4,13 @@ import { MovieDetails } from '../../interfaces';
 import * as MovieActions from '../actions/movie.actions';
 
 export interface MovieState {
-  movie: { [ id: number ]: MovieDetails };
+  movie: MovieDetails;
   isLoading: boolean;
   loaded: boolean;
 }
 
 export const initialMovieState: MovieState = {
-  movie: {},
+  movie: {} as MovieDetails,
   isLoading: false,
   loaded: false
 };

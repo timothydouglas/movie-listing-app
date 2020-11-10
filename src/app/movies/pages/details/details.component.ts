@@ -12,7 +12,7 @@ import { MovieDetails } from '../../interfaces';
 })
 export class DetailsComponent implements OnInit {
 
-  movie$: Observable<MovieDetails> = this.store.pipe( select( fromStore.getSelectedMovie ) );
+  movie$: Observable<MovieDetails> = this.store.pipe( select( fromStore.getMovieDetails ) );
 
   constructor(private store: Store<fromStore.AppState>) {}
 
