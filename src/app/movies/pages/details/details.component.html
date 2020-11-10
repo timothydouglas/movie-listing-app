@@ -1,39 +1,33 @@
-<div class="menu">
-  <button [routerLink]="['/']" routerLinkActive="router-link-active">Listing</button>
-  <button [routerLink]="['/movies/details']" routerLinkActive="router-link-active">Details</button>
+<div class="block-movie" *ngIf="movie$ | async">
+  <div class="row">
+    <div class="column img">
+      <div class="movie-image">
+        <img *ngIf="movie$.poster_path | async" src="https://image.tmdb.org/t/p/w300/{{movie.poster_path}}">
+        <img *ngIf="!movie$.poster_path" src="http://makeupstudio.lu/html/images/poster/no_poster_available.jpg">
+      </div>
+    </div>
+    <div class="column overview">
+      <p class="item-title" *ngIf="movie$.title | async">{{movie.title}}</p>
+      <div class="item-heading">
+        <div class="item-rating" *ngIf="movie.vote_average">
+          Rating: {{movie.vote_average}} / 10
+        </div>
+        <div class="item-genre" *ngIf="movie.genres">
+          Genre:
+          <span *ngFor="let gen of movie.genres; let $last = last;">{{gen.name}}{{$last ? '.' : ', '}}</span>
+        </div>
+      </div>
+      <div class="item-description" *ngIf="movie.overview">
+        <p><span class="block-title">Overview:</span> {{movie.overview}}</p>
+      </div>
+      <div class="item-cast" *ngIf="cast">
+        <span class="block-title">Cast:</span>
+        <span *ngFor="let actor of cast; let $last = last;">{{actor?.name}}{{$last ? '.' : ', '}} </span>
+      </div>
+      <div class="item-director" *ngIf="directors">
+        <span class="block-title">Directors:</span>
+        <span>{{director?.name}}</span>
+      </div>
+    </div>
+  </div>
 </div>
-
-
-<!--<div class="block-movie" *ngIf="movie">-->
-<!--  <div class="row">-->
-<!--    <div class="column img">-->
-<!--      <div class="movie-image">-->
-<!--        <img *ngIf="movie.poster_path" src="https://image.tmdb.org/t/p/w300/{{movie.poster_path}}">-->
-<!--        <img *ngIf="!movie.poster_path" src="http://makeupstudio.lu/html/images/poster/no_poster_available.jpg">-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="column overview">-->
-<!--      <p class="item-title" *ngIf="movie.title">{{movie.title}}</p>-->
-<!--      <div class="item-heading">-->
-<!--        <div class="item-rating" *ngIf="movie.vote_average">-->
-<!--          Rating: {{movie.vote_average}} / 10-->
-<!--        </div>-->
-<!--        <div class="item-genre" *ngIf="movie.genres">-->
-<!--          Genre:-->
-<!--          <span *ngFor="let gen of movie.genres; let $last = last;">{{gen.name}}{{$last ? '.' : ', '}}</span>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <div class="item-description" *ngIf="movie.overview">-->
-<!--        <p><span class="block-title">Overview:</span> {{movie.overview}}</p>-->
-<!--      </div>-->
-<!--      <div class="item-cast" *ngIf="cast">-->
-<!--        <span class="block-title">Cast:</span>-->
-<!--        <span *ngFor="let actor of cast; let $last = last;">{{actor?.name}}{{$last ? '.' : ', '}} </span>-->
-<!--      </div>-->
-<!--      <div class="item-director" *ngIf="directors">-->
-<!--        <span class="block-title">Directors:</span>-->
-<!--        <span>{{director?.name}}</span>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->

@@ -1,10 +1,10 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { Movie } from '../../interfaces';
-import * as MovieActions from '../actions/movie.actions';
+import { Movies } from '../../interfaces';
+import * as MovieActions from '../actions/movie-list.actions';
 
 export interface MovieListState {
-  movies: Movie[];
+  movies: Movies[];
   page: number;
   isLoading: boolean;
   loaded: boolean;
@@ -40,7 +40,7 @@ export const movieReducer = createReducer(
     page: state.page + 1,
     isLoading: true,
     loaded: false
-  }) ),
+  }) )
 );
 
 export const getMoviesLoading = (state: MovieListState) => state.isLoading;

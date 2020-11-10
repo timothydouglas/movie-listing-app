@@ -1,43 +1,24 @@
-import { ActionReducerMap, createSelector, createFeatureSelector } from '@ngrx/store';
+import { ActionReducerMap, createFeatureSelector } from '@ngrx/store';
 
 import * as fromMovieList from './movie-list.reducer';
+import * as fromMovie from './movie.reducer';
 
 export const featureKey = 'movies';
 
 export interface AppState {
   movies: fromMovieList.MovieListState;
+  movie: fromMovie.MovieState;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
   movies: fromMovieList.movieReducer,
+  movie: fromMovie.reducer
 };
 
-export const getMovieListState = createFeatureSelector<AppState>( 'movies' );
+export const getMovieListState = createFeatureSelector<AppState>( featureKey );
+export const getMovieDetailsState = createFeatureSelector<AppState>( featureKey );
 
-export const getMoviesState = createSelector(
-  getMovieListState,
-  ( state: AppState ) => state.movies
-);
 
-export const selectMovies = createSelector(
-  getMoviesState,
-  fromMovieList.getMovies
-);
-
-export const selectPage = createSelector(
-  getMoviesState,
-  ( { page } ) => page
-);
-
-export const getMoviesLoaded = createSelector(
-  getMoviesState,
-  fromMovieList.getMoviesLoaded
-);
-
-export const getMoviesLoading = createSelector(
-  getMoviesState,
-  fromMovieList.getMoviesLoading
-);
 
 
 

@@ -6,20 +6,18 @@ import { EffectsModule } from '@ngrx/effects';
 import { MatCardModule } from '@angular/material/card';
 import { StoreModule } from '@ngrx/store';
 import { ScrollingModule } from '@angular/cdk/scrolling';
-
 import { MovieService } from './services/movie.service';
 import { PopularComponent } from './pages/popular/popular.component';
 import { DetailsComponent } from './pages/details/details.component';
-import { MovieEffects } from './store/effects/movie.effects';
 import { MoviesGuard } from './guards/movies.guard';
 import { ListingComponent } from './components/listing/listing.component';
 import { MatButtonModule } from '@angular/material/button';
-import { reducers, featureKey } from './store/';
+import { reducers, featureKey, effects } from './store/';
 
 @NgModule({
   imports: [
     CommonModule,
-    EffectsModule.forFeature( [MovieEffects] ),
+    EffectsModule.forFeature( effects ),
     StoreModule.forFeature( featureKey, reducers ),
     MoviesRoutingModule,
     MatButtonModule,

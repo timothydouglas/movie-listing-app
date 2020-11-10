@@ -10,7 +10,7 @@ const routes: Routes = [
     component: PopularComponent,
   },
   {
-    path: 'details/:id',
+    path: 'details/:movieId',
     component: DetailsComponent
   },
 ];

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Movie, Page } from '../interfaces';
+import { Movie, Movies, Page } from '../interfaces';
 import { environment } from '../../../environments/environment';
 import { map } from 'rxjs/operators';
 
@@ -16,12 +16,12 @@ export class MovieService {
     return this.http.get<Page>(`${environment.apiEndpoint}movie/popular?api_key=${environment.apiKey}&page=${page}`);
   }
 
-  getMovies(page): Observable<Movie[]> {
+  getMovies(page): Observable<Movies[]> {
     return this.http.get<Movie[]>(`${environment.apiEndpoint}movie/popular?api_key=${environment.apiKey}&page=${page}`).pipe(
       map( resp => (<any>resp).results));
   }
 
-  getMovie(id: number): Observable<Movie> {
-    return this.http.get<Movie>(`${environment.apiEndpoint}movie/${id}`);
+  getMovie(id): Observable<Movie> {
+    return this.http.get<Movie>(`${environment.apiEndpoint}movie/${id}?api_key=${environment.apiKey}`);
   }
 }

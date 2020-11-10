@@ -1,57 +1,52 @@
-import { Store, Action, createFeatureSelector, select } from '@ngrx/store';
-import { Actions, createEffect, ofType, OnInitEffects } from '@ngrx/effects';
+import { Store, select } from '@ngrx/store';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { switchMap, map, tap, withLatestFrom, catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
-import * as fromStore from '../../store/';
-import { ROUTER_NAVIGATED, RouterReducerState } from '@ngrx/router-store';
-import * as fromRouter from '@ngrx/router-store';
+
+import * as fromActions from '../actions/';
+import * as fromReducers from '../reducers';
+import * as fromSelectors from '../selectors';
+import * as fromRoot from '../../../store';
 import { of } from 'rxjs';
 
-export const getRouterState = createFeatureSelector<RouterReducerState>( 'router' );
-
-export const {
-  selectCurrentRoute,   // select the current route
-  selectQueryParams,    // select the current route query params
-  selectQueryParam,     // factory function to select a query param
-  selectRouteParams,    // select the current route params
-  selectRouteParam,     // factory function to select a route param
-  selectRouteData,      // select the current route data
-  selectUrl,            // select the current url
-} = fromRouter.getSelectors( getRouterState );
-
 @Injectable()
-export class MovieEffects implements OnInitEffects {
+export class MovieEffects {
   constructor(
     private actions$: Actions,
     private movieService: MovieService,
-    private store: Store<fromStore.AppState>
-  ) {}
+    private store: Store<fromReducers.AppState>
+  ) {
+  }
 
-  movies$ = this.store.pipe( select( fromStore.selectMovies ) );
-  page$ = this.store.pipe( select( fromStore.selectPage ) );
+  page$ = this.store.pipe( select( fromSelectors.selectPage ) );
 
   loadNextPage$ = createEffect( () =>
     this.actions$.pipe(
-      ofType( fromStore.loadNextPage ),
+      ofType( fromActions.loadNextPage ),
       withLatestFrom( this.page$ ),
       switchMap( ( [_, page] ) => this.movieService.getPage( page ).pipe(
-        map( result => fromStore.loadMoviesSuccess( { movies: result.results } ) ),
-        catchError( error => of( fromStore.loadMoviesFail( error ) )
+        map( result => fromActions.loadMoviesSuccess( { movies: result.results } ) ),
+        catchError( error => of( fromActions.loadMoviesFail( error ) )
         ) ) ),
       tap( console.log )
     )
   );
 
-  // loadMovie$ = createEffect( () =>
-  //   this.actions$.pipe(
-  //     ofType( ROUTER_NAVIGATED ),
-  //     switchMap( <any>this.store.select( selectRouteParam( 'id' )  ) ),
-  //       map( ( id: number ) => actions.loadMovie( { id } ) ),
-  //     ), { dispatch: true }
-  // );
-
-  ngrxOnInitEffects(): Action {
-    return fromStore.loadNextPage();
-  }
+  loveMovieDetails$ = createEffect( () =>
+    this.actions$.pipe(
+      ofType( fromActions.loadMovie ),
+      withLatestFrom(
+        this.store.select( fromRoot.getRouterState ),
+        ( action, router ) => ({
+          id: router.state.params.movieId
+        })
+      ),
+      switchMap( movieId => this.movieService.getMovie( movieId.id ).pipe(
+        map( movie => fromActions.loadMovieSuccess( { movie: movie.movie } ) ),
+        catchError( error => of( fromActions.loadMovieFail( error ) )
+        ) ) ),
+      tap( console.log )
+    )
+  );
 }

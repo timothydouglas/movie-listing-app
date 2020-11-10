@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
-import { MeterService } from '../../shared/services/meter/meter.service';
+import { MeterService } from '../services/meter/meter.service';
 
 @Injectable()
 export class ContentInterceptor implements HttpInterceptor {

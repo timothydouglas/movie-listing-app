@@ -1,24 +1,16 @@
 import { createAction, props } from '@ngrx/store';
-import { Movie } from '../../interfaces';
+import { MovieDetails } from '../../interfaces';
 
-export const loadNextPage = createAction( '[Movies/API] Load Next Page' );
-
-export const loadMovies = createAction(
-  '[Movies/API] Load Movies'
+export const loadMovie = createAction(
+  '[Movies/API] Load Movie'
 );
 
-export const loadMoviesFail = createAction(
-  '[Movies/API] Load Movies Fail',
+export const loadMovieFail = createAction(
+  '[Movies/API] Load Movie Fail',
   props<{ payload: {} }>()
 );
 
-export const loadMoviesSuccess = createAction(
-  '[Movies/API] Load Movies Success',
-  props<{ movies: Movie[] }>()
+export const loadMovieSuccess = createAction(
+  '[Movies/API] Load Movie Success',
+  props<{ movie: MovieDetails }>()
 );
-
-export const loadMovie = createAction(
-  '[Movies/API] Load movie',
-  props<{ id: number }>()
-);
-

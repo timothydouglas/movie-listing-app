@@ -1,31 +1,43 @@
-// import { createEntityAdapter, EntityAdapter } from '@ngrx/entity';
-// import { createReducer, on } from '@ngrx/store';
-//
-// import { Movie } from '../../interfaces';
-// import * as MovieActions from '../actions/movie.actions';
-//
-// export interface MovieState {
-//   movies: { [id: number]: Movie };
-//   isLoading: boolean;
-// }
-//
-// export const adapter: EntityAdapter<Movie> = createEntityAdapter<Movie>();
-//
-// export const initialState: MovieState = adapter.getInitialState( {
-//   movies: {},
-//   isLoading: false
-// } );
-//
-// // tslint:disable-next-line:no-empty-interface
-// export interface State extends MovieState {
-// }
-//
-// // export const reducer = createReducer(
-// //   initialState,
-// //   on( MovieActions.loadMovies, ( state: MovieState, { movies } ) => ({
-// //     ...state,
-// //     isLoading: false
-// //   }) )
-// // );
-//
-//
+import { createReducer, on } from '@ngrx/store';
+
+import { MovieDetails } from '../../interfaces';
+import * as MovieActions from '../actions/movie.actions';
+
+export interface MovieState {
+  movie: { [ id: number ]: MovieDetails };
+  isLoading: boolean;
+  loaded: boolean;
+}
+
+export const initialMovieState: MovieState = {
+  movie: {},
+  isLoading: false,
+  loaded: false
+};
+
+
+export const reducer = createReducer(
+  initialMovieState,
+  on( MovieActions.loadMovie, ( state: MovieState ) => ({
+    ...state,
+    isLoading: true,
+    loaded: false
+  }) ),
+  on( MovieActions.loadMovieSuccess, ( state: MovieState, { movie } ) => ({
+    ...state,
+    isLoading: false,
+    loaded: true,
+    movie: state.movie
+  }) ),
+  on( MovieActions.loadMovieFail, ( state: MovieState ) => ({
+    ...state,
+    isLoading: false,
+    loaded: false,
+  }) )
+);
+
+export const getMovieLoading = ( state: MovieState ) => state.isLoading;
+export const getMovieLoaded = ( state: MovieState ) => state.loaded;
+export const getMovie = ( state: MovieState ) => state.movie;
+
+
