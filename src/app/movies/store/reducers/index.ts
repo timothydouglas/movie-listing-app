@@ -11,8 +11,8 @@ export interface AppState {
 }
 
 export const reducers: ActionReducerMap<AppState> = {
-  movies: fromMovieList.movieReducer,
-  movie: fromMovie.reducer
+  movies: fromMovieList.movieListReducer,
+  movie: fromMovie.movieReducer
 };
 
 export const getMovieListState = createFeatureSelector<AppState>( featureKey );
