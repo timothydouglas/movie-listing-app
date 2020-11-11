@@ -17,11 +17,3 @@ export const reducers: ActionReducerMap<AppState> = {
 
 export const getMovieListState = createFeatureSelector<AppState>( featureKey );
 export const getMovieDetailsState = createFeatureSelector<AppState>( featureKey );
-
-
-
-
-
-
-
-
