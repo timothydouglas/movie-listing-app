@@ -1,4 +1,4 @@
-import { createReducer, on } from '@ngrx/store';
+import { Action, createReducer, on } from '@ngrx/store';
 
 import { MovieDetails } from '../../interfaces';
 import * as MovieActions from '../actions/movie.actions';
@@ -10,13 +10,12 @@ export interface MovieState {
 }
 
 export const initialMovieState: MovieState = {
-  movie: {} as MovieDetails,
+  movie: <MovieDetails>{},
   isLoading: false,
   loaded: false
 };
 
-
-export const reducer = createReducer(
+export const movieReducer = createReducer(
   initialMovieState,
   on( MovieActions.loadMovie, ( state: MovieState ) => ({
     ...state,
@@ -25,9 +24,9 @@ export const reducer = createReducer(
   }) ),
   on( MovieActions.loadMovieSuccess, ( state: MovieState, { movie } ) => ({
     ...state,
+    movie: movie,
     isLoading: false,
-    loaded: true,
-    movie: state.movie
+    loaded: true
   }) ),
   on( MovieActions.loadMovieFail, ( state: MovieState ) => ({
     ...state,
@@ -35,6 +34,10 @@ export const reducer = createReducer(
     loaded: false,
   }) )
 );
+
+export function reducer(state: MovieState, action: Action): MovieState {
+  return movieReducer(state, action);
+}
 
 export const getMovieLoading = ( state: MovieState ) => state.isLoading;
 export const getMovieLoaded = ( state: MovieState ) => state.loaded;

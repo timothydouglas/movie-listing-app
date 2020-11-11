@@ -7,7 +7,7 @@ export const getMoviesState = createSelector(
   ( state: AppState ) => state.movies
 );
 
-export const selectMovies = createSelector(
+export const getMovies = createSelector(
   getMoviesState,
   fromMovieList.getMovies
 );

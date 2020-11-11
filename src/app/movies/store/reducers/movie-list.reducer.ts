@@ -1,4 +1,4 @@
-import { createReducer, on } from '@ngrx/store';
+import { Action, createReducer, on } from '@ngrx/store';
 
 import { Movies } from '../../interfaces';
 import * as MovieActions from '../actions/movie-list.actions';
@@ -17,7 +17,7 @@ export const initialState: MovieListState = {
   loaded: false,
 };
 
-export const movieReducer = createReducer(
+export const movieListReducer = createReducer(
   initialState,
   on( MovieActions.loadMovies, ( state: MovieListState ) => ({
     ...state,
@@ -42,6 +42,10 @@ export const movieReducer = createReducer(
     loaded: false
   }) )
 );
+
+export function reducer(state: MovieListState, action: Action): MovieListState {
+  return movieListReducer(state, action);
+}
 
 export const getMoviesLoading = (state: MovieListState) => state.isLoading;
 export const getMoviesLoaded = (state: MovieListState) => state.loaded;
