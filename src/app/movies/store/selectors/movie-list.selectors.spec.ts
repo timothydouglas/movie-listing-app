@@ -1,5 +1,5 @@
 import * as selectors from '../selectors';
-import { initialState } from '../reducers';
+import { initialState } from '../reducers/movie-list.reducer';
 import { generateItems, TEST_PAGE_SIZE } from '../../../../../mocks';
 
 describe('Movie List Selectors', () => {
@@ -9,7 +9,7 @@ describe('Movie List Selectors', () => {
     expect(before.length).toBe(0);
     const newState: any = {
       ...initialState,
-      items: generateItems(TEST_PAGE_SIZE),
+      movies: generateItems(TEST_PAGE_SIZE),
     };
     const after = selectors.getMovies.projector(newState);
     expect(after.length).toBe(TEST_PAGE_SIZE);

@@ -1,43 +1,31 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ScrollingModule } from '@angular/cdk/scrolling';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { ListingComponent } from './listing.component';
-import { provideMockStore, MockStore } from '@ngrx/store/testing';
-import { Store } from '@ngrx/store';
-import * as fromStore from '../../store';
 
-describe( 'ListComponent', () => {
-  let component: ListingComponent;
-  let fixture: ComponentFixture<ListingComponent>;
-  let store: MockStore<fromStore.AppState>;
+let component: ListingComponent;
+let fixture: ComponentFixture<ListingComponent>;
 
-  beforeEach( async( () => {
-    TestBed.configureTestingModule( {
-      declarations: [
-        ListingComponent,
-      ],
-      imports: [
-        ScrollingModule,
-      ],
-      providers: [
-        provideMockStore(),
-      ]
-    } )
-      .compileComponents();
-  } ) );
+describe( 'ListingComponent', () => {
 
   beforeEach( () => {
-    fixture = TestBed.createComponent( ListingComponent );
-    store = TestBed.get( Store );
+    TestBed.configureTestingModule( {
+      imports: [],
+      declarations: [
+        ListingComponent
+      ],
+    } );
 
-    store.overrideSelector( fromStore.getMoviesLoading, false );
-    store.overrideSelector( fromStore.getMovies, [] );
-    store.overrideSelector( fromStore.selectPage, 0 );
-
+    fixture = TestBed.overrideComponent( ListingComponent, {
+      set: {
+        template: ''
+      }
+    } ).createComponent( ListingComponent );
     component = fixture.componentInstance;
     fixture.detectChanges();
   } );
 
-  it( 'should create', () => {
+  it( 'should call be truthy', () => {
     expect( component ).toBeTruthy();
   } );
 } );
+

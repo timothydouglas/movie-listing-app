@@ -1,7 +1,8 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { Movie } from '../interfaces';
+import { Movies } from '../interfaces';
 import { MovieService } from './movie.service';
+import { environment } from '../../../environments/environment';
 
 describe( 'MovieService', () => {
   let httpTestingController: HttpTestingController;
@@ -13,16 +14,16 @@ describe( 'MovieService', () => {
       providers: [MovieService]
     } );
 
-    movieService = TestBed.inject(MovieService);
-    httpTestingController = TestBed.inject(HttpTestingController);
+    movieService = TestBed.inject( MovieService );
+    httpTestingController = TestBed.inject( HttpTestingController );
   } );
 
   it( 'should be created', inject( [MovieService], ( service: MovieService ) => {
     expect( service ).toBeTruthy();
   } ) );
 
-  it('can test HttpClient.get attendees', () => {
-    const testMovies: Movie[] = [
+  it( 'can test HttpClient.get Movies', () => {
+    const testMovies: Movies[] = [
       {
         adult: 'Test',
         backdrop_path: 'Test',
@@ -40,12 +41,12 @@ describe( 'MovieService', () => {
       }
     ];
 
-    movieService.getMovies().subscribe();
-    const req = httpTestingController.expectOne('/api/attendees');
-    expect(req.request.method).toEqual('GET');
-    req.flush(testMovies);
+    movieService.getMovies( 1 ).subscribe();
+    const req = httpTestingController.expectOne( `${ environment.apiEndpoint }movie/popular?api_key=${ environment.apiKey }&page=1` );
+    expect( req.request.method ).toEqual( 'GET' );
+    req.flush( testMovies );
 
     httpTestingController.verify();
-  });
+  } );
 } );
 

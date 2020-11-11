@@ -27,8 +27,8 @@ describe( 'Movie List Reducers', () => {
     const items1 = generateItems( 10, 0 );
     const expectedState = {
       ...initialState,
-      loading: false,
-      isLoaded: true,
+      isLoading: false,
+      loaded: true,
       movies: items1,
     };
     expect( reducer( initialState, actions.loadMoviesSuccess( { movies: items1 } ) ) ).toEqual( jasmine.objectContaining( expectedState ) );
@@ -38,8 +38,8 @@ describe( 'Movie List Reducers', () => {
     const combinedItems = items1.concat( items2 );
     const expectedState2 = {
       ...initialState,
-      loading: false,
-      isLoaded: true,
+      isLoading: false,
+      loaded: true,
       movies: combinedItems
     };
     // tslint:disable-next-line:max-line-length

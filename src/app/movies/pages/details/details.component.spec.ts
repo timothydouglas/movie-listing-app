@@ -1,31 +1,41 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { DetailsComponent } from './details.component';
+import { Store } from '@ngrx/store';
+import * as fromStore from '../../store';
 
-let component: DetailsComponent;
-let fixture: ComponentFixture<DetailsComponent>;
-
-describe( 'DetailsComponent', () => {
+describe( 'ListComponent', () => {
+  let component: DetailsComponent;
+  let fixture: ComponentFixture<DetailsComponent>;
+  let store: MockStore<fromStore.AppState>;
 
   beforeEach( () => {
     TestBed.configureTestingModule( {
-      imports: [],
       declarations: [
-        DetailsComponent
+        DetailsComponent,
       ],
-    } );
+      providers: [
+        provideMockStore(),
+      ]
+    } )
+      .compileComponents();
+  } );
 
-    fixture = TestBed.overrideComponent( DetailsComponent, {
-      set: {
-        template: ''
-      }
-    } ).createComponent( DetailsComponent );
+  beforeEach( () => {
+    fixture = TestBed.createComponent( DetailsComponent );
+    store = TestBed.get( Store );
+
+    store.overrideSelector( fromStore.getMovieLoading, false );
+    store.overrideSelector( fromStore.getMovieDetails, {} as any );
+    store.overrideSelector( fromStore.getSelectedMovie, 123456 );
+
     component = fixture.componentInstance;
     fixture.detectChanges();
   } );
 
-  it( 'should call be truthy', () => {
+  it( 'should create', () => {
     expect( component ).toBeTruthy();
   } );
 } );
+
 

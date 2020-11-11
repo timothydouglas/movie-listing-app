@@ -26,9 +26,9 @@ describe( 'Movie Details Reducers', () => {
     const item = generateItem();
     const expectedState = {
       ...initialMovieState,
-      loading: false,
-      isLoaded: true,
-      movies: item,
+      isLoading: false,
+      loaded: true,
+      movie: item,
     };
     // tslint:disable-next-line:max-line-length
     expect( reducer( initialMovieState, actions.loadMovieSuccess( { movie: item } ) ) ).toEqual( jasmine.objectContaining( expectedState ) );
