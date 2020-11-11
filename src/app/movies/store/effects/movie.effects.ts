@@ -42,7 +42,7 @@ export class MovieEffects {
         })
       ),
       switchMap( movieId => this.movieService.getMovie( movieId.id ).pipe(
-        map( movie => fromActions.loadMovieSuccess( movie ) ),
+        map( movie => fromActions.loadMovieSuccess( {movie: <any>movie} ) ),
         catchError( error => of( fromActions.loadMovieFail( error ) )
         ) ) ),
       tap( console.log )
