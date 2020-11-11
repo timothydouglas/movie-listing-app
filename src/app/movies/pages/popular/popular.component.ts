@@ -6,8 +6,7 @@ import { Movies } from '../../interfaces';
 
 @Component( {
   selector: 'app-popular-movies',
-  templateUrl: './popular.component.html',
-  styleUrls: ['./popular.component.scss']
+  templateUrl: './popular.component.html'
 } )
 export class PopularComponent {
 

@@ -6,6 +6,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { MatCardModule } from '@angular/material/card';
 import { StoreModule } from '@ngrx/store';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+// import { ScrollingModule as ExperimentalScrollingModule } from '@angular/cdk-experimental/scrolling';
 import { MovieService } from './services/movie.service';
 import { PopularComponent } from './pages/popular/popular.component';
 import { DetailsComponent } from './pages/details/details.component';

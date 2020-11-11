@@ -1,6 +1,8 @@
 import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { Movies } from '../../interfaces';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { fromEvent } from 'rxjs';
+import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-listing',
@@ -14,6 +16,12 @@ export class ListingComponent {
   @Input() loadMoreBuffer: number;
   @Input() isLoading: boolean;
   @Input() movies: Movies[];
+
+  resizeHandler$ = fromEvent(window, 'resize').pipe(
+    distinctUntilChanged(),
+    debounceTime(60),
+    tap(() => this.viewport.checkViewportSize())
+  );
 
   scrolledIndexChange( index: number ) {
     if ( this.isLoading || !this.movies || this.movies.length === 0 ) {
