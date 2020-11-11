@@ -3,11 +3,11 @@
   <p>Loading</p>
 </div>
 
-<cdk-virtual-scroll-viewport class="movie-list" itemSize="100" maxBufferPx="500"
+<cdk-virtual-scroll-viewport class="movie-list" itemSize="800" maxBufferPx="900"
                              (scrolledIndexChange)="scrolledIndexChange($event)">
   <div class="movie-list-wrapper">
     <div *cdkVirtualFor="let movie of movies; index as i;" class="list-item">
-    <mat-card class="card-movie">
+    <mat-card class="card-movie" [routerLink]="['details', movie.id]">
         <mat-card-header>
           <div *ngIf="movie.poster_path" class="card-avatar" mat-card-avatar [style.background-image]="'url(https://image.tmdb.org/t/p/w300/' + movie.poster_path + ')'"></div>
           <mat-card-title>{{ movie.title }}</mat-card-title>
@@ -19,7 +19,6 @@
         <ng-template #noImage>
           <img mat-card-image alt="{{movie.title}}" src="http://makeupstudio.lu/html/images/poster/no_poster_available.jpg"/>
         </ng-template>
-
 
         <mat-card-content>
           <div class="item-description" *ngIf="movie.overview">

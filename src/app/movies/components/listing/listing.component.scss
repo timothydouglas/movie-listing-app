@@ -1,5 +1,5 @@
 .movie-list {
-  height: 100vh;
+  height: 100%;
   width: 100%;
 
   &-wrapper {
@@ -10,8 +10,16 @@
 }
 
 .card-movie {
+  cursor: pointer;
+  position: relative;
   height: 100%;
   width: 100%;
+
+  img {
+    height: fit-content;
+    object-fit: cover;
+    object-position: center;
+  }
 }
 
 .card-avatar {
@@ -22,8 +30,15 @@
   margin: 0 auto 32px;
 }
 
+.mat-card-image-bg {
+  background-size: cover;
+  padding-bottom: 20%;
+  height: 0;
+  width: 100%;
+}
+
 .list-item {
-  background-color: var(--colorBrand);
+  box-sizing: border-box;
   margin-bottom: 30px;
   padding-left: 10px;
   padding-right: 10px;
@@ -53,13 +68,6 @@
   display: block;
   height: var(--spinnerSize);
   width: var(--spinnerSize);
-}
-
-.cdk-virtual-scroll-content-wrapper {
-  display: flex;
-  flex-flow: row wrap;
-  margin-left: -10px;
-  margin-right: -10px;
 }
 
 @keyframes rotation {

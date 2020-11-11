@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
-import { Movie } from '../../interfaces';
+import { Movies } from '../../interfaces';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 
 @Component({
@@ -11,9 +11,9 @@ export class ListingComponent {
 
   @ViewChild(CdkVirtualScrollViewport, { static: true }) viewport: CdkVirtualScrollViewport;
   @Output() loadMore: EventEmitter<null> = new EventEmitter();
-  @Input() loadMoreBuffer = 1;
+  @Input() loadMoreBuffer: number;
   @Input() isLoading: boolean;
-  @Input() movies: Movie[];
+  @Input() movies: Movies[];
 
   scrolledIndexChange( index: number ) {
     if ( this.isLoading || !this.movies || this.movies.length === 0 ) {
