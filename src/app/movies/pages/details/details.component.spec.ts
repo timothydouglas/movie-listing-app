@@ -1,25 +1,31 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DetailsComponent } from './details.component';
 
-describe('DetailsComponent', () => {
-  let component: DetailsComponent;
-  let fixture: ComponentFixture<DetailsComponent>;
+let component: DetailsComponent;
+let fixture: ComponentFixture<DetailsComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ DetailsComponent ]
-    })
-    .compileComponents();
-  }));
+describe( 'DetailsComponent', () => {
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(DetailsComponent);
+  beforeEach( () => {
+    TestBed.configureTestingModule( {
+      imports: [],
+      declarations: [
+        DetailsComponent
+      ],
+    } );
+
+    fixture = TestBed.overrideComponent( DetailsComponent, {
+      set: {
+        template: ''
+      }
+    } ).createComponent( DetailsComponent );
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
+  } );
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  it( 'should call be truthy', () => {
+    expect( component ).toBeTruthy();
+  } );
+} );
+

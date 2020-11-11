@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
@@ -10,14 +10,11 @@ import { MovieDetails } from '../../interfaces';
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.scss']
 })
-export class DetailsComponent implements OnInit {
+export class DetailsComponent {
 
   movie$: Observable<MovieDetails> = this.store.pipe( select( fromStore.getMovieDetails ) );
 
-  constructor(private store: Store<fromStore.AppState>) {}
-
-  ngOnInit(): void {
+  constructor(private store: Store<fromStore.AppState>) {
     this.store.dispatch(fromStore.loadMovie());
   }
-
 }

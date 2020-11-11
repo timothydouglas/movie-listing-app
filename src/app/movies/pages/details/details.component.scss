@@ -1,0 +1,63 @@
+.block-movie {
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+
+  .movie-image {
+    margin-bottom: 30px;
+
+    img {
+      width: auto;
+    }
+  }
+
+  .item-heading {
+    color: var(--white);
+    display: flex;
+    flex-flow: row wrap;
+    margin-bottom: 10px;
+    margin-right: -10px;
+    margin-left: -10px;
+  }
+
+  .item-title {
+    color: var(--white);
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+
+  .item-subtitle {
+    font-size: 14px;
+    font-weight: 500;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .item-description {
+    margin-bottom: 10px;
+
+    p {
+      color: var(--white);
+      font-size: 14px;
+      font-style: italic;
+    }
+  }
+
+  .item-block {
+    margin-bottom: 10px;
+
+    p {
+      color: var(--white);
+      font-size: 14px;
+    }
+  }
+
+  .block-title {
+    color: var(--whote);
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+  }
+}

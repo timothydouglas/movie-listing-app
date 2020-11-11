@@ -9,16 +9,46 @@
     <div class="column overview">
       <p class="item-title" *ngIf="movie.title">{{movie.title}}</p>
       <div class="item-heading">
-        <div class="item-rating" *ngIf="movie.vote_average">
+        <div class="item-subtitle" *ngIf="movie.vote_average">
           Rating: {{movie.vote_average}} / 10
         </div>
-        <div class="item-genre" *ngIf="movie.genres">
+        <div class="item-subtitle" *ngIf="movie.release_date">
+          <p>Release Date: {{ movie.release_date | date }}</p>
+        </div>
+        <div class="item-subtitle" *ngIf="movie.genres">
           Genre:
           <span *ngFor="let gen of movie.genres; let $last = last;">{{gen.name}}{{$last ? '.' : ', '}}</span>
         </div>
       </div>
       <div class="item-description" *ngIf="movie.overview">
         <p><span class="block-title">Overview:</span> {{movie.overview}}</p>
+      </div>
+      <div class="item-block" *ngIf="movie.original_title">
+          <p>Original Title: {{ movie.original_title }}</p>
+      </div>
+      <div class="item-block" *ngIf="movie.original_language">
+        <p>Original Language: {{ movie.original_language }}</p>
+      </div>
+      <div class="item-block" *ngIf="movie.spoken_languages">
+        <p>Production countries: <span *ngFor="let lang of movie.spoken_languages; let $last = last;">{{lang.name}}{{$last ? '.' : ', '}}</span></p>
+      </div>
+      <div class="item-block" *ngIf="movie.production_companies">
+        <p>Production companies: <span *ngFor="let company of movie.production_companies; let $last = last;">{{company.name}}{{$last ? '.' : ', '}}</span></p>
+      </div>
+      <div class="item-block" *ngIf="movie.production_countries">
+        <p>Production countries: <span *ngFor="let country of movie.production_countries; let $last = last;">{{country.name}}{{$last ? '.' : ', '}}</span></p>
+      </div>
+      <div class="item-block" *ngIf="movie.budget">
+        <p>Budget: ${{ movie.budget }}</p>
+      </div>
+      <div class="item-block" *ngIf="movie.homepage">
+        <p>Homepage: <a [href]="movie.homepage" target="_blank">{{movie.homepage}}</a></p>
+      </div>
+      <div class="item-block" *ngIf="movie.runtime">
+        <p>Runtime: {{ movie.runtime }} minutes</p>
+      </div>
+      <div class="item-block" *ngIf="movie.status">
+        <p>Status: {{ movie.status }}</p>
       </div>
     </div>
   </div>
