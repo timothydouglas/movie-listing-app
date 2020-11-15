@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
+
 import * as fromStore from '../../store';
-import { Observable } from 'rxjs';
-import { Movies } from '../../interfaces';
+import { MovieService } from '../../services/movie.service';
 
 @Component( {
   selector: 'app-popular-movies',
@@ -10,15 +10,13 @@ import { Movies } from '../../interfaces';
 } )
 export class PopularComponent {
 
-  movies$: Observable<Movies[]> = this.store.pipe( select( fromStore.getMovies ) );
-  isLoading$: Observable<boolean> = this.store.pipe( select( fromStore.getMoviesLoading ) );
-
-  constructor( private store: Store<fromStore.AppState> ) {
+  constructor( private store: Store<fromStore.AppState>,
+               public movieService: MovieService) {
     this.loadNextPage();
   }
 
   loadNextPage() {
-    this.store.dispatch( fromStore.loadNextPage() );
+    this.movieService.dispatchLoadMovies( this.store );
   }
 }
 
