@@ -1,10 +1,10 @@
 import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { componentDestroyed, OnDestroyMixin } from '@w11k/ngx-componentdestroyed';
-import { fromEvent } from 'rxjs';
+import { fromEvent, Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, takeUntil, tap } from 'rxjs/operators';
-import { Movies } from '../../interfaces';
 import { ListRange } from '@angular/cdk/collections';
+import { Movies } from '../../interfaces';
 
 @Component({
   selector: 'app-listing',
@@ -19,7 +19,7 @@ export class ListingComponent extends OnDestroyMixin {
   @Input() isLoading: boolean;
   @Input() movies: Movies[];
 
-  resizeHandler$ = fromEvent(window, 'resize').pipe(
+  resizeHandler$: Observable<boolean | Event> = fromEvent(window, 'resize').pipe(
     distinctUntilChanged(),
     debounceTime(60),
     tap(() => this.viewport.checkViewportSize()),
@@ -40,7 +40,7 @@ export class ListingComponent extends OnDestroyMixin {
   }
 
 
-  identify(index, movie): number {
+  identify(index: number, movie: Movies): number {
     return movie.id;
   }
 }

@@ -1,14 +1,14 @@
-import { Store, select } from '@ngrx/store';
+import { Store, select, Action } from '@ngrx/store';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { switchMap, map, tap, withLatestFrom, catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
 
+import { selectPage } from '../selectors';
 import * as fromActions from '../actions/';
 import * as fromReducers from '../reducers';
-import * as fromSelectors from '../selectors';
 import * as fromRoot from '../../../store';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Injectable()
 export class MovieEffects {
@@ -18,9 +18,9 @@ export class MovieEffects {
     private store: Store<fromReducers.AppState>
   ) {}
 
-  page$ = this.store.pipe( select( fromSelectors.selectPage ) );
+  page$ = this.store.pipe( select( selectPage ) );
 
-  loadNextPage$ = createEffect( () =>
+  loadNextPage$: Observable<Action> = createEffect( () =>
     this.actions$.pipe(
       ofType( fromActions.loadNextPage ),
       withLatestFrom( this.page$ ),
@@ -32,7 +32,7 @@ export class MovieEffects {
     )
   );
 
-  loveMovieDetails$ = createEffect( () =>
+  loveMovieDetails$: Observable<Action> = createEffect( () =>
     this.actions$.pipe(
       ofType( fromActions.loadMovie ),
       withLatestFrom(
