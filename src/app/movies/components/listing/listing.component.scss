@@ -45,15 +45,17 @@
 
 .loading {
   align-items: center;
+  color: white;
   display: flex;
   flex-direction: column;
+  font-weight: 600;
   font-size: calc(10px + 2vmin);
   justify-content: center;
   min-height: 100vh;
   overflow: hidden;
 
   > p {
-    display: none;
+    margin-top: 20px;
   }
 }
 

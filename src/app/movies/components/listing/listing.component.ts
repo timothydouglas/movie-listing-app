@@ -13,7 +13,7 @@ import { Movies } from '../../interfaces';
 })
 export class ListingComponent extends OnDestroyMixin {
 
-  @ViewChild(CdkVirtualScrollViewport, { static: true }) viewport: CdkVirtualScrollViewport;
+  @ViewChild(CdkVirtualScrollViewport, { static: false }) viewport: CdkVirtualScrollViewport;
   @Output() loadMore: EventEmitter<null> = new EventEmitter();
   @Input() loadMoreBuffer: number;
   @Input() isLoading: boolean;

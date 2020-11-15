@@ -5,40 +5,38 @@
   <p>Loading</p>
 </div>
 
-<div class *ngIf="!movies?.length; else movieList">
-  <p>No movies found. Please try again later.</p>
+<div class="movie-list-container" *ngIf="movies?.length; else noMovies">
+  <cdk-virtual-scroll-viewport class="movie-list" itemSize="244" maxBufferPx="500"
+                               (scrolledIndexChange)="scrolledIndexChange($event)">
+    <div class="movie-list-wrapper">
+      <div *cdkVirtualFor="let movie of movies; index as i; trackBy: identify" class="list-item">
+      <mat-card class="card-movie" [routerLink]="['details', movie.id]">
+          <mat-card-header>
+            <div *ngIf="movie.poster_path" class="card-avatar" mat-card-avatar [style.background-image]="'url(https://image.tmdb.org/t/p/w300/' + movie.poster_path + ')'"></div>
+            <mat-card-title>{{ movie.title }}</mat-card-title>
+            <mat-card-subtitle>Rating {{ movie.vote_average }} / 10</mat-card-subtitle>
+          </mat-card-header>
+
+<!--          <img mat-card-image alt="{{movie.title}}" *ngIf="movie.poster_path; else noImage"-->
+<!--               src="https://image.tmdb.org/t/p/w300/{{movie.poster_path}}"/>-->
+<!--          <ng-template #noImage>-->
+<!--            <img mat-card-image alt="{{movie.title}}" src="http://makeupstudio.lu/html/images/poster/no_poster_available.jpg"/>-->
+<!--          </ng-template>-->
+
+          <mat-card-content>
+            <div class="item-description" *ngIf="movie.overview">
+              <p>{{movie.overview | slice:0:150 }}{{movie.overview.length > 150 ? '...' : ''}}</p>
+            </div>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button mat-raised-button [routerLink]="['details', movie.id]">Details</button>
+          </mat-card-actions>
+      </mat-card>
+    </div>
+    </div>
+  </cdk-virtual-scroll-viewport>
 </div>
 
-<ng-template #movieList>
-  <div class="movie-list-container">
-    <cdk-virtual-scroll-viewport class="movie-list" itemSize="244" maxBufferPx="500"
-                                 (scrolledIndexChange)="scrolledIndexChange($event)">
-      <div class="movie-list-wrapper">
-        <div *cdkVirtualFor="let movie of movies; index as i; trackBy: identify" class="list-item">
-        <mat-card class="card-movie" [routerLink]="['details', movie.id]">
-            <mat-card-header>
-              <div *ngIf="movie.poster_path" class="card-avatar" mat-card-avatar [style.background-image]="'url(https://image.tmdb.org/t/p/w300/' + movie.poster_path + ')'"></div>
-              <mat-card-title>{{ movie.title }}</mat-card-title>
-              <mat-card-subtitle>Rating {{ movie.vote_average }} / 10</mat-card-subtitle>
-            </mat-card-header>
-
-  <!--          <img mat-card-image alt="{{movie.title}}" *ngIf="movie.poster_path; else noImage"-->
-  <!--               src="https://image.tmdb.org/t/p/w300/{{movie.poster_path}}"/>-->
-  <!--          <ng-template #noImage>-->
-  <!--            <img mat-card-image alt="{{movie.title}}" src="http://makeupstudio.lu/html/images/poster/no_poster_available.jpg"/>-->
-  <!--          </ng-template>-->
-
-            <mat-card-content>
-              <div class="item-description" *ngIf="movie.overview">
-                <p>{{movie.overview | slice:0:150 }}{{movie.overview.length > 150 ? '...' : ''}}</p>
-              </div>
-            </mat-card-content>
-            <mat-card-actions>
-              <button mat-button mat-raised-button [routerLink]="['details', movie.id]">Details</button>
-            </mat-card-actions>
-        </mat-card>
-      </div>
-      </div>
-    </cdk-virtual-scroll-viewport>
-  </div>
+<ng-template #noMovies>
+  <p>No movies found. Please try again later.</p>
 </ng-template>
