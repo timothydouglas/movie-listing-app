@@ -1,20 +1,19 @@
-import { Component } from '@angular/core';
-import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Store } from '@ngrx/store';
 
 import * as fromStore from '../../store';
-import { MovieDetails } from '../../interfaces';
+import { MovieService } from '../../services/movie.service';
 
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
-  styleUrls: ['./details.component.scss']
+  styleUrls: ['./details.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DetailsComponent {
 
-  movie$: Observable<MovieDetails> = this.store.pipe( select( fromStore.getMovieDetails ) );
-
-  constructor(private store: Store<fromStore.AppState>) {
-    this.store.dispatch(fromStore.loadMovie());
+  constructor(private store: Store<fromStore.AppState>,
+              public movieService: MovieService) {
+    this.movieService.dispatchLoadMovie(this.store);
   }
 }
