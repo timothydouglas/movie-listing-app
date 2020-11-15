@@ -1,5 +1,5 @@
-import * as fromMovies from './';
+import { MovieDetails } from './';
 
 export interface Movie {
-  movie: fromMovies.MovieDetails;
+  movie: MovieDetails;
 }

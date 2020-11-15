@@ -1,11 +1,11 @@
-import * as fromMovies from './';
+import { Genres, ProductionCompanies, ProductionCountries, SpokenLanguages } from './';
 
 export interface MovieDetails {
   adult: string;
   backdrop_path: string;
   belongs_to_collection: object;
   budget: number;
-  genres: fromMovies.Genres[];
+  genres: Genres[];
   homepage: string;
   id: number;
   imdb_id: string;
@@ -14,12 +14,12 @@ export interface MovieDetails {
   overview: string;
   popularity: number;
   poster_path: string;
-  production_companies: fromMovies.ProductionCompanies[];
-  production_countries: fromMovies.ProductionCountries[];
+  production_companies: ProductionCompanies[];
+  production_countries: ProductionCountries[];
   release_date: string;
   revenue: number;
   runtime: number;
-  spoken_languages: fromMovies.SpokenLanguages[];
+  spoken_languages: SpokenLanguages[];
   status: string;
   tagline: string;
   title: string;

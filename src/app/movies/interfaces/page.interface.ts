@@ -1,8 +1,8 @@
-import * as MovieModule from './';
+import { Movies } from './';
 
 export interface Page {
   page: number;
-  results: MovieModule.Movies[];
+  results: Movies[];
   total_results: number;
   total_pages: number;
 }
