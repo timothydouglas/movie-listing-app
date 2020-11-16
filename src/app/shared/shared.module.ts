@@ -5,18 +5,31 @@ import { HeaderComponent } from './components/header/header.component';
 import { RouterModule } from '@angular/router';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ContentInterceptor } from './interceptors/content.interceptor';
+import { RemoveUnderscorePipe } from './pipes/remove-underscore.pipe';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
     HeaderComponent,
+    RemoveUnderscorePipe,
   ],
   imports: [
     CommonModule,
     MatProgressBarModule,
-    RouterModule
+    RouterModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatButtonModule,
+    MatIconModule
   ],
   exports: [
-    HeaderComponent
+    HeaderComponent,
+    RemoveUnderscorePipe
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ContentInterceptor, multi: true },
