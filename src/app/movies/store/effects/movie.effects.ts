@@ -3,12 +3,12 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { switchMap, map, tap, withLatestFrom, catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
+import { Observable, of } from 'rxjs';
 
 import { selectPage } from '../selectors';
 import * as fromActions from '../actions/';
 import * as fromReducers from '../reducers';
 import * as fromRoot from '../../../store';
-import { Observable, of } from 'rxjs';
 
 @Injectable()
 export class MovieEffects {
