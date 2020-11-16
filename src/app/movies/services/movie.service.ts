@@ -17,8 +17,9 @@ export class MovieService {
   movie$: Observable<MovieDetails>;
   movies$: Observable<Movies[]>;
 
-  constructor( private http: HttpClient ) {
-  }
+  constructor(
+    private http: HttpClient
+  ) {}
 
   getPage( page = 0 ): Observable<Page> {
     return this.http.get<Page>( `${ environment.apiEndpoint }movie/popular?api_key=${ environment.apiKey }&page=${ page }` );

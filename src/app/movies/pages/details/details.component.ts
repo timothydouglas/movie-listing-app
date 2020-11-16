@@ -11,9 +11,10 @@ import { MovieService } from '../../services/movie.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DetailsComponent {
-
-  constructor(private store: Store<fromStore.AppState>,
-              public movieService: MovieService) {
+  constructor(
+    private store: Store<fromStore.AppState>,
+    public movieService: MovieService
+  ) {
     this.movieService.dispatchLoadMovie(this.store);
   }
 }

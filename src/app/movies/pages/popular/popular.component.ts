@@ -9,9 +9,10 @@ import { MovieService } from '../../services/movie.service';
   templateUrl: './popular.component.html'
 } )
 export class PopularComponent {
-
-  constructor( private store: Store<fromStore.AppState>,
-               public movieService: MovieService) {
+  constructor(
+    private store: Store<fromStore.AppState>,
+    public movieService: MovieService
+  ) {
     this.loadNextPage();
   }
 

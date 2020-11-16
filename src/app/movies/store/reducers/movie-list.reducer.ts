@@ -26,7 +26,7 @@ export const movieListReducer = createReducer(
   }) ),
   on( MovieActions.loadMoviesSuccess, ( state: MovieListState, { movies } ) => ({
     ...state,
-    movies: state.movies.concat( movies ),
+    movies: state.movies.length < 100 ? [...state.movies, ...movies] : state.movies,
     isLoading: false,
     loaded: true,
   }) ),
