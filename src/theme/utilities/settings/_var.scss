@@ -10,11 +10,11 @@
 }
 
 // Font Styles
-
 $base-em: 16px;
 $base-line-height: 1.5;
 $base-font-size: 100%; // typical default browser font-size is 16px
 $font-family-base: 'Open Sans', Arial, sans-serif;
+$font-family-serif: 'Roboto', Arial, sans-serif;
 
 $font-weight-thin: 100;
 $font-weight-light: 300;
@@ -90,6 +90,18 @@ $palette: (
     border: #C7C7C7,
     dark: #38444d
   ),
+);
+
+$spacing: (
+  trim: (
+    small: -16px,
+    medium: -20px
+  ),
+  content: (
+    small: 16px,
+    medium: 20px,
+    large: 30px
+  )
 );
 
 

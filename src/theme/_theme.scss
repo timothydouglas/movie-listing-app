@@ -1,13 +1,7 @@
 // a. Utilities
 // -------------------------------------------------
-@import "utilities/functions";
-@import "utilities/settings/var";
-@import "utilities/mixins";
+@import 'utilities/utilities';
 
 // b. Base
 // -------------------------------------------------
 @import "base/base";
-
-// c. Layout
-// -------------------------------------------------
-@import "layout/header";
