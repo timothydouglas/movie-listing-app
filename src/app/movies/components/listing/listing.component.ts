@@ -27,18 +27,17 @@ export class ListingComponent extends OnDestroyMixin {
   );
 
   scrolledIndexChange( index: number ): void {
-    if ( this.isLoading || !this.movies || this.movies.length === 0 ) {
+    if ( this.isLoading || !this.movies?.length ) {
       return;
-    }
+    } else {
+      const { end }: ListRange = this.viewport.getRenderedRange();
+      const total: number = this.viewport.getDataLength();
 
-    const { end }: ListRange = this.viewport.getRenderedRange();
-    const total: number = this.viewport.getDataLength();
-
-    if ( end >= total - this.loadMoreBuffer ) {
-      this.loadMore.emit();
+      if ( end >= total - this.loadMoreBuffer ) {
+        this.loadMore.emit();
+      }
     }
   }
-
 
   identify(index: number, movie: Movies): number {
     return movie.id;
