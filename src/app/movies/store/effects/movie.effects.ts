@@ -18,7 +18,7 @@ export class MovieEffects {
     private store: Store<fromReducers.AppState>
   ) {}
 
-  page$ = this.store.pipe( select( selectPage ) );
+  page$: Observable<number> = this.store.pipe( select( selectPage ) );
 
   loadNextPage$: Observable<Action> = createEffect( () =>
     this.actions$.pipe(
