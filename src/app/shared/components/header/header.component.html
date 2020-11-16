@@ -1,5 +1,20 @@
-<header class="header">
-  <div class="container">
-      <h1 class="title" routerLink="/">Movie Listing App</h1>
-  </div>
-</header>
+<mat-toolbar color="primary" class="header">
+  <mat-toolbar-row>
+    <h1>
+      <a mat-button routerLink="/">Movie Listing App</a>
+    </h1>
+    <span class="menu-spacer"></span>
+    <div>
+      <a mat-button routerLink="/popular">Popular</a>
+      <a mat-button routerLink="/latest">Latest</a>
+      <a mat-button routerLink="/now_playing">Now Playing</a>
+      <a mat-button routerLink="/top_rated">Top Rated</a>
+      <a mat-button routerLink="/upcoming">Upcoming</a>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+
+
+
+
