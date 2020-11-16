@@ -1,0 +1,14 @@
+@import '../../../../theme/utilities/utilities';
+
+.header {
+  h1 {
+   a {
+     font-size: 20px;
+   }
+  }
+
+  .mat-toolbar-row {
+    margin-left: spacing(trim, small);
+    margin-right: spacing(trim, small);
+  }
+}

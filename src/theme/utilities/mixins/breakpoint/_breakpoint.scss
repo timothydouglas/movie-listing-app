@@ -1,0 +1,40 @@
+$mq-support: true !default;
+$mq-fixed-value: 64em !default; // 1024px / 16px
+
+// Breakpoint
+// @param  {String} $feature          - Type of media query (min-width, max-width, min-max-width)
+// @param  {String} $value-one        - Min-width
+// @param  {String} $value-two: false - Max-width
+@mixin bp($feature, $value-one, $value-two: false) {
+  // Media queries supported
+  @if $mq-support == true {
+
+    @if $feature == 'min-max-width' {
+      @media #{$screen} and (min-width: $value-one) and (max-width: $value-two) {
+        @content;
+      }
+    } @else {
+      @media #{$screen} and ($feature: $value-one) {
+        @content;
+      }
+    }
+
+    // Media queries not supported
+  } @else {
+
+    @if $feature == 'min-width' {
+      @if $value-one <= $mq-fixed-value {
+        @content;
+      }
+    } @else if $feature == 'max-width' {
+      @if $value-one >= $mq-fixed-value {
+        @content;
+      }
+    } @else if $feature == 'min-max-width' {
+      @if $value-one <= $mq-fixed-value and (not $value-two or $value-two and $value-two >= $mq-fixed-value) {
+        @content;
+      }
+    }
+
+  }
+}

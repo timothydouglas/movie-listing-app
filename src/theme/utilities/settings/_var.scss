@@ -1,0 +1,110 @@
+// CSS4 Variables to be used globally
+:root {
+  /* loading spinner */
+  --spinnerSize: 20px;
+  --spinnerBorder: rgba(9, 211, 172, 0.5);
+  --spinnerBorderAccent:  #09d3ac;
+  --spinnerBorderWidth: 3px;
+  --colourBrand: #1c2938;
+  --white: #FFFFFF;
+}
+
+// Font Styles
+$base-em: 16px;
+$base-line-height: 1.5;
+$base-font-size: 100%; // typical default browser font-size is 16px
+$font-family-base: 'Open Sans', Arial, sans-serif;
+$font-family-serif: 'Roboto', Arial, sans-serif;
+
+$font-weight-thin: 100;
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-ultra: 900;
+
+// We use these to control various global styles
+$body-font-color: #41474a;
+$body-font-family: $font-family-base;
+$body-font-weight: $font-weight-normal;
+$body-font-style: normal;
+$link__hover__text-decoration: none;
+$link__active__text-decoration: none;
+$kerning: 0.05em;
+
+// Media query ranges
+// -------------------------------------------------
+$mobile-breakpoint: 480px;
+$xsmall-breakpoint: 601px;
+$small-breakpoint: 767px;
+$medium-breakpoint: 969px;
+$large-breakpoint: 1200px;
+
+$mobile-range: (370px, $mobile-breakpoint);
+$xsmall-range: ($mobile-breakpoint, $xsmall-breakpoint);
+$small-range: ($xsmall-breakpoint, $small-breakpoint);
+$medium-range: ($small-breakpoint + 1px, $medium-breakpoint);
+$large-range: ($medium-breakpoint + 1px, $large-breakpoint);
+
+$screen: 'only screen';
+
+$landscape: '#{$screen} and (orientation: landscape)';
+$portrait: '#{$screen} and (orientation: portrait)';
+
+$mobile-min: lower-bound($mobile-range);
+$mobile-max: upper-bound($mobile-range);
+
+$xsmall-min: lower-bound($xsmall-range);
+$xsmall-max: upper-bound($xsmall-range);
+
+$small-min: lower-bound($small-range);
+$small-max: upper-bound($small-range);
+
+$medium-min: lower-bound($medium-range);
+$medium-max: upper-bound($medium-range);
+
+$large-min: lower-bound($large-range);
+$large-max: upper-bound($large-range);
+
+$palette: (
+  blacks: (
+    base: #1D2432,
+    light: #2B2B2C,
+    dark: #1A1A1C,
+    darker: #151517,
+    border: #0000004d
+  ),
+  brand: (
+    base: #1E5282,
+    red: #CD355E
+  ),
+  blues: (
+    base: #2FC2EF,
+    navy: #10171e,
+    panel: #15202b,
+    brand: #1c2938
+  ),
+  greys: (
+    base: #8899a6,
+    border: #C7C7C7,
+    dark: #38444d
+  ),
+);
+
+$spacing: (
+  trim: (
+    small: -16px,
+    medium: -20px
+  ),
+  content: (
+    small: 16px,
+    medium: 20px,
+    large: 30px
+  )
+);
+
+
+
+
+

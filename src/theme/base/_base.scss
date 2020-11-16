@@ -1,0 +1,162 @@
+// Set box-sizing globally to handle padding and border widths
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-size: $base-font-size;
+}
+
+// Default body styles
+body {
+  background-color: color(blues, navy);
+  color: $body-font-color;
+  font-family: $body-font-family;
+  font-style: $body-font-style;
+  font-weight: $body-font-weight;
+  line-height: $base-line-height;
+  margin: 0;
+  overflow-x: hidden;
+  padding: 0;
+  position: relative;
+}
+
+// Remove text-shadow in selection highlight:
+// https://twitter.com/miketaylr/status/12228805301
+// These selection rule sets have to be separate.
+::-moz-selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+::selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+// A better looking default horizontal rule
+hr {
+  border: 0;
+  border-top: 2px solid color(brand, red);
+  display: block;
+  height: 2px;
+  margin: 6px auto 0;
+  max-width: 30px;
+  padding: 0;
+}
+
+// Remove the gap between audio, canvas, iframes,
+// images, videos and the bottom of their containers:
+// https://github.com/h5bp/html5-boilerplate/issues/440
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+  vertical-align: middle;
+}
+
+// Remove default fieldset styles.
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+// Allow only vertical resizing of textareas.
+textarea {
+  resize: vertical;
+}
+
+// Remove default menu styles.
+menu {
+  margin: 0;
+  padding: 0
+}
+
+img {
+  // Responsive images
+  max-width: 100%;
+  height: auto;
+
+  // IE fix bicubic scaling for images
+  -ms-interpolation-mode: bicubic;
+
+  // Get rid of gap under images by making them display: inline-block; by default
+  display: inline-block;
+  vertical-align: middle;
+}
+
+// Typography resets
+div,
+figure,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+form,
+p,
+blockquote,
+th,
+td {
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+p {
+  font-size: 14px;
+  margin-bottom: 16px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: $font-weight-bold;
+}
+
+address {
+  font-style: $body-font-style;
+  font-size: 14px;
+}
+
+// Default Link Styles
+a {
+  color: color(blues);
+  text-decoration: none;
+  transition: all .1s ease-in-out 0s;
+
+  &:hover,
+  &:focus {
+    color: darken(color(blues), 10%);
+    text-decoration: none;
+  }
+
+  img {
+    border: 0;
+  }
+}

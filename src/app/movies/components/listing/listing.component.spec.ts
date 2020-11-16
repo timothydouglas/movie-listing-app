@@ -28,3 +28,4 @@ describe( 'ListingComponent', () => {
     expect( component ).toBeTruthy();
   } );
 } );
+

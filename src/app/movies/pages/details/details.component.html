@@ -1,4 +1,75 @@
-<div class="menu">
-  <button [routerLink]="['/']" routerLinkActive="router-link-active">Listing</button>
-  <button [routerLink]="['/movies/details']" routerLinkActive="router-link-active">Details</button>
+<div class="block-movie" *ngIf="movieService.movie$ | async as movie">
+  <div class="row">
+    <div class="column img">
+      <div class="movie-image">
+        <img *ngIf="movie.poster_path" [alt]="movie.title" src="https://image.tmdb.org/t/p/w300/{{movie.poster_path}}">
+        <img *ngIf="!movie.poster_path" [alt]="movie.title" src="http://makeupstudio.lu/html/images/poster/no_poster_available.jpg">
+      </div>
+    </div>
+    <div class="column overview">
+      <p class="item-title" *ngIf="movie.title">{{movie.title}}</p>
+<!--      <div class="item-heading">-->
+<!--        <div class="item-subtitle" *ngIf="movie.vote_average">-->
+<!--          Rating: {{movie.vote_average}} / 10-->
+<!--        </div>-->
+<!--        <div class="item-subtitle" *ngIf="movie.release_date">-->
+<!--          <p>Release Date: {{ movie.release_date | date }}</p>-->
+<!--        </div>-->
+<!--        <div class="item-subtitle" *ngIf="movie.genres">-->
+<!--          Genre:-->
+<!--          <span *ngFor="let gen of movie.genres; let last = last;">{{gen.name}}{{last ? '.' : ', '}}</span>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="item-description" *ngIf="movie.overview">-->
+<!--        <p><span class="block-title">Overview:</span> {{movie.overview}}</p>-->
+<!--      </div>-->
+      <div class="item-block" *ngFor="let details of $any(movie) | keyvalue">
+        <ng-container *ngIf="['vote_average', 'release_date'].indexOf(details.key) !== -1;">
+<!--          <div class="item-subtitle">-->
+<!--            -->
+<!--          </div>-->
+        </ng-container>
+
+        <p *ngIf="details.key === 'title'">{{ details.value }}</p>
+        <div class="item-subtitle" *ngIf="movie.vote_average">-->
+          <!--          Rating: {{movie.vote_average}} / 10-->
+          <!--        </div>-->
+        <ng-container *ngIf="['genres', 'spoken_languages', 'production_companies', 'production_countries'].indexOf(details.key) !== -1; else detail">
+          <p>{{details.key | removeUnderscore}}: <span *ngFor="let d of details.value; let last = last;">{{d.name}}{{last ? '.' : ', '}}</span></p>
+        </ng-container>
+        <ng-template #detail>
+          <p>{{details.key | removeUnderscore}}: {{details.value}}</p>
+        </ng-template>
+      </div>
+
+
+<!--      <div class="item-block" *ngIf="movie.original_title">-->
+<!--          <p>Original Title: {{ movie.original_title }}</p>-->
+<!--      </div>-->
+<!--      <div class="item-block" *ngIf="movie.original_language">-->
+<!--        <p>Original Language: {{ movie.original_language }}</p>-->
+<!--      </div>-->
+<!--      <div class="item-block" *ngIf="movie.spoken_languages">-->
+<!--        <p>Production countries: <span *ngFor="let lang of movie.spoken_languages; let last = last;">{{lang.name}}{{last ? '.' : ', '}}</span></p>-->
+<!--      </div>-->
+<!--      <div class="item-block" *ngIf="movie.production_companies">-->
+<!--        <p>Production companies: <span *ngFor="let company of movie.production_companies; let last = last;">{{company.name}}{{last ? '.' : ', '}}</span></p>-->
+<!--      </div>-->
+<!--      <div class="item-block" *ngIf="movie.production_countries">-->
+<!--        <p>Production countries: <span *ngFor="let country of movie.production_countries; let last = last;">{{country.name}}{{last ? '.' : ', '}}</span></p>-->
+<!--      </div>-->
+<!--      <div class="item-block" *ngIf="movie.budget">-->
+<!--        <p>Budget: ${{ movie.budget }}</p>-->
+<!--      </div>-->
+<!--      <div class="item-block" *ngIf="movie.homepage">-->
+<!--        <p>Homepage: <a [href]="movie.homepage" target="_blank">{{movie.homepage}}</a></p>-->
+<!--      </div>-->
+<!--      <div class="item-block" *ngIf="movie.runtime">-->
+<!--        <p>Runtime: {{ movie.runtime }} minutes</p>-->
+<!--      </div>-->
+<!--      <div class="item-block" *ngIf="movie.status">-->
+<!--        <p>Status: {{ movie.status }}</p>-->
+<!--      </div>-->
+    </div>
+  </div>
 </div>

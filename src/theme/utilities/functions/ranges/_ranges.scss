@@ -1,0 +1,21 @@
+// Lower bound
+// @param  {Array} $range - An array e.g (one, two)
+// @return {String}       - Returns the first value
+@function lower-bound($range) {
+  @if length($range) <= 0 {
+    @return 0;
+  }
+
+  @return nth($range, 1);
+}
+
+// Upper bound
+// @param  {Array} $range - An array e.g (one, two)
+// @return {String}       - Returns the second value
+@function upper-bound($range) {
+  @if length($range) < 2 {
+    @return 999999999999;
+  }
+
+  @return nth($range, 2);
+}
