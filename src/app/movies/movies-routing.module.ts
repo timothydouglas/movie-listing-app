@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PopularComponent } from './pages/popular/popular.component';
 import { DetailsComponent } from './pages/details/details.component';
-import { MoviesGuard } from './guards/movies.guard';
 
 const routes: Routes = [
   {
